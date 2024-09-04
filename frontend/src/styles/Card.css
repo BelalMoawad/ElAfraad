@@ -1,0 +1,33 @@
+/* Card.css */
+
+.card {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items:last baseline;
+  justify-content:space-between;
+  padding: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: hwb(203 54% 16%);
+  transition: transform 0.3s ease-in-out;
+
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background-color: rgb(8, 119, 129);
+}
+
+.card-icon {
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
+
+.card-name {
+  font-size: 35px;
+  font-weight: bold;
+  color: #333;
+}
