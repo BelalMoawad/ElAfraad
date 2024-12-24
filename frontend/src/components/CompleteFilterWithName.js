@@ -2,9 +2,19 @@ import React, { useEffect, useState} from "react";
 import Table from '../helpers/Table';
 import '../styles/OptionalAddingForm.css';
 
+const normalizeArabicText = (text) => {
+  return text
+      .toLowerCase() // Make it case-insensitive
+      .replace(/أ|إ|آ/g, 'ا'); // Replace all forms of 'أ', 'إ', and 'آ' with 'ا'
+};
+
 const CompleteFilterWithName = ({name, soldiers, type}) => {
     const [filteredSoldiers, setFilteredSoldiers] = useState([]);
-    const filtered = soldiers.filter((soldier) => soldier.name.startsWith(name));
+    const normalizedSearchName = normalizeArabicText(name);
+
+    const filtered = soldiers.filter((soldier) => 
+        normalizeArabicText(soldier.name).includes(normalizedSearchName)
+    );
     console.log("Filtered Data: ", filtered)
     useEffect(() => {
         setFilteredSoldiers(filtered);
@@ -26,7 +36,7 @@ const CompleteFilterWithName = ({name, soldiers, type}) => {
         { heading: 'إسـم', value: 'name', width: '150px' },
         { heading: 'رتبة / درجة', value: 'military_rank', width: '40px' },
         { heading: 'م', value: '', width: '20px' },
-      ] 
+    ] 
     
     return <div>
       

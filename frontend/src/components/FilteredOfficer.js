@@ -40,7 +40,11 @@ const FilteredOfficer = () => {
      { heading: 'فصيلة الدم', value: 'blood_type' },
   ]
   const handleDelete = () => {
-    navigate(`/deleting/${id}/api_officer`);
+    navigate(`/deleting/api_officer/${id}`);
+  }
+
+  const handleUpdate = () => {
+    navigate(`/updating/api_officer/${id}`);
   }
 
   const handlePunishments = () => {
@@ -56,6 +60,7 @@ const FilteredOfficer = () => {
   return (
     <div>
       <Button type="text" text="حذف" onClick={handleDelete}/>
+      <Button type="text" text="تعديل" onClick={handleUpdate}/>
       <VerticalTable data={[officer]} columns={columns} />
       <div className="Elhabla">
         <Button type="text" text="جزاءات" onClick={handlePunishments}/>

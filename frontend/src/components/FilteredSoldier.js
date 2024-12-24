@@ -49,11 +49,16 @@ const FilteredSoldier = () => {
   }
   
   const handleDelete = () => {
-    navigate(`/deleting/${id}/api_soldier`);
+    navigate(`/deleting/api_soldier/${id}`);
   }
+  const handleUpdate = () => {
+    navigate(`/updating/api_soldier/${id}`);
+  }
+
   return (
     <div>
       <Button type="text" text="حذف" onClick={handleDelete}/>
+      <Button type="text" text="تعديل" onClick={handleUpdate}/>
       <VerticalTable data={[soldier]} columns={columns} />
       <div className="Elhabla">
         <Button type="text" text="جزاءات" onClick={handlePunishments}/>

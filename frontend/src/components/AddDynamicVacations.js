@@ -44,6 +44,7 @@ const AddDynamicVacations = () => {
         console.error(error);
       });
     };
+    
   
     const handleSubmit = (e) => {
       e.preventDefault();

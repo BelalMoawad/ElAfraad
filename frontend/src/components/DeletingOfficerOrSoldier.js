@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const DeletingOfficerOrSoldier = () => {
-    const { id, type } = useParams();  
+    const { type, id } = useParams();  
     const navigate = useNavigate();
     useEffect(() => {
         fetch(`http://localhost:8000/${type}/${id}/`, {

@@ -28,6 +28,11 @@ import PunishmentShow from "./components/PunishmentShow";
 import VacationsShow from "./components/VacationsShow";
 import PromotionsShow from "./components/PromotionsShow"; 
 import DeletingOfficerOrSoldier from "./components/DeletingOfficerOrSoldier";
+import UpdatingOfficerOrSoldier from "./components/UpdatingOfficerOrSoldier";
+import UpdateDynamicPhoneNumbers from "./components/UpdateDynamicPhoneNumbers";
+import UpdateDynamicPunishments from "./components/UpdateDynamicPunishments";
+import UpdateDynamicVacations from "./components/UpdateDynamicVacations";
+import UpdateDynamicPromotions from "./components/UpdateDynamicPromotions";
 
 
 function App() {
@@ -63,7 +68,12 @@ function App() {
             <Route exact path="/punishments/:id/:type/:rank/:name" element={<PunishmentShow />} />
             <Route exact path="/vacations/:id/:type/:rank/:name" element={<VacationsShow />} />
             <Route exact path="/promotions/:id/:type/:rank/:name" element={<PromotionsShow />} />
-            <Route exact path="/deleting/:id/:type" element={<DeletingOfficerOrSoldier />} />
+            <Route exact path="/deleting/:type/:id" element={<DeletingOfficerOrSoldier />} />
+            <Route exact path="/updating/:type/:id" element={<UpdatingOfficerOrSoldier />} />
+            <Route exact path="/update/mobile_numbers/:id/:type" element={<UpdateDynamicPhoneNumbers />} />
+            <Route exact path="/update/punishments/:id/:type" element={<UpdateDynamicPunishments />} />
+            <Route exact path="/update/vacations/:id/:type" element={<UpdateDynamicVacations />} />
+            <Route exact path="/update/promotions/:id/:type" element={<UpdateDynamicPromotions />} />
           </Routes>
         </AuthProvider>
       </Router>

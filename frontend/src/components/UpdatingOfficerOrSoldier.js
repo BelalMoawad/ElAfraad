@@ -1,105 +1,61 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "../styles/AddingForm.css";
 import Label from "../helpers/Label";
 import "../styles/Button.css";
 import Button from "../helpers/Button";
-import OptionalRadio from "../helpers/OptionalRadio";
+import "../styles/OptionalAddingForm.css";
+import { FaEdit  } from "react-icons/fa";
+import Card from "../helpers/Card";
 
-const AddingForm = () => {
+const UpdatingOfficerOrSoldier = () => {
+  const { type, id } = useParams();
   const navigate = useNavigate();
-  const initialOfficerData = {
-    military_number: "",
-    military_rank: "",
-    name: "",
-    seniority_number: "",
-    national_number: "",
-    address: "",
-    weapon_name: "",
-    workshop_speciality: "",
-    marital_status: "",
-    entering_army_date: "",
-    exit_from_army_date: "",
-    religion: "",
-    blood_type: "",
-  };
+  const [formData, setFormData] = useState({});
 
-  const initialSoldierData = {
-    military_number: "",
-    military_rank: "",
-    name: "",
-    national_number: "",
-    address: "",
-    weapon_name: "",
-    workshop_speciality: "",
-    marital_status: "",
-    entering_army_date: "",
-    exit_from_army_date: "",
-    religion: "",
-    blood_type: "",
-  };
-  const [selectedOption, setSelectedOption] = useState("api_officer");
-  const [officerData, setOfficerData] = useState(initialOfficerData);
-  const [soldierData, setSoldierData] = useState(initialSoldierData);
 
-  const handleOptionChange = (option) => {
-    setSelectedOption(option);
-    if (option === "api_officer") {
-      setFormData(officerData);
-    } else {
-      setFormData(soldierData);
-    }
-  };
-
-  const [formData, setFormData] = useState(officerData);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if (selectedOption === "api_officer") {
-      setOfficerData((prevData) => ({ ...prevData, [name]: value }));
-    } else {
-      setSoldierData((prevData) => ({ ...prevData, [name]: value }));
-    }
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
+  useEffect(() => {
+    fetch(`http://localhost:8000/${type}/${id}/`, {
+      method: "GET",
+      Headers: {
+        "content-type": "applications",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((resp) => setFormData(resp))
+      .catch((error) => console.log(error));
+  }, [id, type]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:8000/${selectedOption}/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        const params = {
-          dataId: data.id,
-          dataRank: data.military_rank,
-          dataName: data.name,
-          dataType: selectedOption,
-        };
-        navigate(
-          `/add/${params.dataId}/${params.dataRank}/${params.dataName}/${params.dataType}`
-        );
+    fetch(`http://localhost:8000/${type}/${id}/`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
-      .catch((error) => {
-        console.error(error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          navigate('/');
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   return (
     <>
-      <OptionalRadio
-        selectedOption={selectedOption}
-        onOptionChange={handleOptionChange}
-      />
       <form onSubmit={handleSubmit} className="form-container">
-        <Button text="إضافة" type="submit" />
+        <Button text="حـفـظ" type="submit" />
         <div className="form-row">
-          {selectedOption === "api_officer" && (
+          {type === "api_officer" && (
             <div className="form-item">
               <Label
                 header="رقم الأقدمية"
@@ -118,7 +74,7 @@ const AddingForm = () => {
             />
           </div>
           <div className="form-item">
-            {selectedOption === "api_officer" && (
+            {type === "api_officer" && (
               <Label
                 header="رتبة"
                 name="military_rank"
@@ -126,7 +82,7 @@ const AddingForm = () => {
                 onChange={handleInputChange}
               />
             )}
-            {selectedOption === "api_soldier" && (
+            {type === "api_soldier" && (
               <Label
                 header="درجة"
                 name="military_rank"
@@ -236,9 +192,24 @@ const AddingForm = () => {
             />
           </div>
         </div>
+
+        <div className="card-container">
+        <Link to={`/update/mobile_numbers/${id}/${type}`}>
+          <Card name="أرقام تليفون" Icon={FaEdit} />
+        </Link>
+        <Link to={`/update/punishments/${id}/${type}`}>
+          <Card name="جزاءات" Icon={FaEdit} />
+        </Link>
+        <Link to={`/update/vacations/${id}/${type}`}>
+          <Card name="أجازات" Icon={FaEdit} />
+        </Link>
+        <Link to={`/update/promotions/${id}/${type}`}>
+          <Card name="ترقيات" Icon={FaEdit} />
+        </Link>
+      </div>    
       </form>
     </>
   );
 };
 
-export default AddingForm;
+export default UpdatingOfficerOrSoldier;
