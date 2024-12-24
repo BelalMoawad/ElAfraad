@@ -1,0 +1,38 @@
+.rotated-table {
+  display: grid;
+  grid-template-columns: 4fr 1.5fr; /* First column for headers, second column for data */
+  overflow-x: auto;
+  margin-left: 15rem;
+  margin-right: 15rem;
+  border: 1.5px solid #282121;
+}
+
+.header-column, .data-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-cell, .data-cell {
+  padding: 6px;
+  border: 1.5px solid #282121;
+}
+
+.header-cell {
+  background-color: rgb(125, 130, 131);
+  text-align: center;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.data-cell {
+  text-align: center;
+  font-size: large;
+  font-weight: 600;
+}
+
+.Top {
+  text-align: center;
+  font-size: x-large;
+  font-weight: bolder;
+  padding: 1rem;
+}

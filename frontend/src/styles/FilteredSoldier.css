@@ -1,0 +1,27 @@
+.cover {
+    display: flex;
+    justify-content:flex-end;
+}
+
+.font1 {
+    font-style:normal;
+    font-family: 'Times New Roman'; 
+    padding-right: 30px;
+    align-content: center;
+    font-size:x-large;
+    font-style: oblique;
+    font-weight:bolder;
+    padding-left: 20px;
+}
+
+.font2 {
+    font-family: 'Times New Roman'; 
+    align-content: center;
+    font-size: x-large;
+    font-style: oblique;
+    font-weight:900;
+}
+
+.Elhabla {
+    margin-left: 400px;
+}

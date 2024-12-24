@@ -1,0 +1,47 @@
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+}
+
+.In {
+  font-size: 20px;
+  box-sizing: border-box;
+  transition: 0.5s;
+  display: flex;  /* Changed to flex */
+}
+
+.Text {
+  background: #ffffff;
+  width: 340px;
+  height: 50px;
+  border: none;
+  outline: none;
+  padding: 0 25px;
+  border-radius: 0 25px 25px 0;
+  direction: rtl;
+  text-align: right;
+}
+
+.Submit_1 {
+  display: flex;  /* Added to ensure the input inside takes full height */
+  align-items: center;  /* Center the button text vertically */
+  justify-content: center;  /* Center the button text horizontally */
+  background: #567ab0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px 0 0 25px;
+  text-decoration: none;  /* Remove underline from Link */
+}
+
+.Submit_1:hover {
+  background: #000000;
+}

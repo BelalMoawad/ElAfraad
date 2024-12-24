@@ -1,0 +1,18 @@
+.cool-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-style:oblique;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 1rem;
+  width: 8%;
+}
+  
+.cool-button:hover {
+  background-color: #0056b3;
+}
